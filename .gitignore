@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# Obsidian (configuração local do cofre)
+.obsidian/
+.trash/
+
+# Imagens brutas / temporárias
+*.heic
+
+# Arquivos temporários
+*.tmp
+*.bak
+*~
