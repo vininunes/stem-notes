@@ -1,0 +1,1 @@
+integral dupla e tripla, incluindo mudança de variáveis, coordenadas polares, cilíndricas e esféricas; integral de linha e integral de superfície

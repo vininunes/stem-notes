@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapa da Grade — BMAC (Sistemas e Controle) — Vinicius</title>
+<style>
+  :root{
+    --done:#2e7d32; --done-bg:#e6f4ea;
+    --now:#1565c0; --now-bg:#e3f0fc;
+    --redo:#c62828; --redo-bg:#fdecea;
+    --next:#ef6c00; --next-bg:#fff3e0;
+    --todo:#546e7a; --todo-bg:#eceff1;
+    --ink:#1a1a1a; --muted:#6b7280; --line:#d8dde3;
+  }
+  *{box-sizing:border-box}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+        color:var(--ink); margin:0; padding:32px; background:#f7f8fa; line-height:1.45;}
+  h1{font-size:24px; margin:0 0 4px;}
+  h2{font-size:17px; margin:28px 0 12px; border-bottom:2px solid var(--line); padding-bottom:6px;}
+  .sub{color:var(--muted); margin:0 0 20px; font-size:14px;}
+  .legend{display:flex; flex-wrap:wrap; gap:10px; margin:0 0 24px;}
+  .tag{display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600;
+       padding:4px 10px; border-radius:999px;}
+  .dot{width:10px;height:10px;border-radius:50%}
+  .t-done{background:var(--done-bg); color:var(--done)} .t-done .dot{background:var(--done)}
+  .t-now{background:var(--now-bg); color:var(--now)} .t-now .dot{background:var(--now)}
+  .t-redo{background:var(--redo-bg); color:var(--redo)} .t-redo .dot{background:var(--redo)}
+  .t-next{background:var(--next-bg); color:var(--next)} .t-next .dot{background:var(--next)}
+  .t-todo{background:var(--todo-bg); color:var(--todo)} .t-todo .dot{background:var(--todo)}
+
+  .grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px;}
+  @media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:600px){.grid{grid-template-columns:1fr}}
+  .sem{background:#fff; border:1px solid var(--line); border-radius:12px; padding:12px;}
+  .sem h3{margin:0 0 10px; font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em;}
+  .card{border-radius:8px; padding:8px 10px; margin-bottom:8px; border-left:4px solid;}
+  .card .code{font-weight:700; font-size:12px;}
+  .card .name{font-size:12.5px;}
+  .card .meta{font-size:11px; color:var(--muted); margin-top:2px;}
+  .c-done{background:var(--done-bg); border-color:var(--done)}
+  .c-now{background:var(--now-bg); border-color:var(--now)}
+  .c-redo{background:var(--redo-bg); border-color:var(--redo)}
+  .c-next{background:var(--next-bg); border-color:var(--next); box-shadow:0 0 0 2px var(--next) inset;}
+  .c-todo{background:var(--todo-bg); border-color:var(--todo)}
+
+  .panel{background:#fff; border:1px solid var(--line); border-radius:12px; padding:18px 20px; margin:8px 0 24px;}
+  .panel.next{border:2px solid var(--next); background:var(--next-bg);}
+  .panel h2{margin-top:0; border:none;}
+  table{border-collapse:collapse; width:100%; font-size:13px;}
+  th,td{text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); vertical-align:top;}
+  th{color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.03em;}
+  .pill{font-size:11px; font-weight:700; padding:2px 8px; border-radius:6px; white-space:nowrap;}
+  .pill.keep{background:var(--next-bg); color:var(--next)}
+  .pill.drop{background:var(--redo-bg); color:var(--redo)}
+  ul.notes{font-size:13px; color:var(--ink); padding-left:18px;}
+  ul.notes li{margin-bottom:6px;}
+  .foot{color:var(--muted); font-size:11px; margin-top:30px; border-top:1px solid var(--line); padding-top:12px;}
+  .badge{font-size:10px; font-weight:700; padding:1px 6px; border-radius:5px; background:var(--todo-bg); color:var(--todo); margin-left:4px;}
+</style>
+</head>
+<body>
+
+<h1>Mapa da Grade — Matemática Aplicada e Computacional</h1>
+<p class="sub">Habilitação <b>Sistemas e Controle</b> (IME-USP · curso 45070 / hab 504) — plano de transferência interna · Vinicius Nunes · jun/2026</p>
+
+<div class="legend">
+  <span class="tag t-done"><span class="dot"></span>Concluída / aproveitada</span>
+  <span class="tag t-now"><span class="dot"></span>Cursando agora (2026/1)</span>
+  <span class="tag t-redo"><span class="dot"></span>Reprovada — refazer</span>
+  <span class="tag t-next"><span class="dot"></span>Recomendada p/ 2026/2</span>
+  <span class="tag t-todo"><span class="dot"></span>A cursar</span>
+</div>
+
+<!-- ===================== RECOMENDAÇÃO PRÓXIMO SEMESTRE ===================== -->
+<div class="panel next">
+  <h2>✅ Matrículas recomendadas para 2026/2</h2>
+  <p class="sub" style="margin-bottom:14px">Critério: obrigatórias do BMAC com pré-requisito já cumprido, que ainda destravam o resto da grade e reforçam o histórico para a banca.</p>
+  <table>
+    <tr><th>Código</th><th>Disciplina</th><th>Por quê</th><th>Cr.</th></tr>
+    <tr><td><b>MAP2226</b></td><td>Intro. às EDOs e Aplicações</td><td>Obrigatória; pré-req (MAP2216) liberado ao passar agora. Próximo passo natural rumo ao eixo de Controle.</td><td>4+1</td></tr>
+    <tr><td><b>MAC0122</b></td><td>Princípios de Desenv. de Algoritmos <span class="badge">refazer</span></td><td>Obrigatória; troca uma reprovação por aprovação — peso alto p/ a transferência. Pré-req MAC0110 OK.</td><td>4</td></tr>
+    <tr><td><b>MAE0121</b></td><td>Intro. à Probabilidade e Estatística I</td><td>Sem pré-requisito. Destrava MAE0212 (que você reprovou) e MAE0228.</td><td>4</td></tr>
+    <tr><td><b>MAP2110</b></td><td>Intro. aos Modelos Lineares</td><td>Sem pré-requisito. Destrava MAP2210 → que destrava MAP2220 (Análise Numérica).</td><td>4+2</td></tr>
+  </table>
+  <p class="sub" style="margin:14px 0 0"><b>~18 créditos · 4 obrigatórias.</b> Carga parecida com a de agora.</p>
+
+  <table style="margin-top:16px">
+    <tr><th>Do seu plano original</th><th>Decisão</th><th>Motivo</th></tr>
+    <tr><td>MAT0220 — Cálculo IV</td><td><span class="pill drop">tirar</span></td><td>Não é obrigatória do BMAC (entra só como optativa livre). Não move o ponteiro da transferência.</td></tr>
+    <tr><td>MAP2220 — Fund. Análise Numérica</td><td><span class="pill drop">tirar</span></td><td>Falta o pré-requisito MAP2210. Você já tinha decidido tirar — confirmado.</td></tr>
+    <tr><td>MAP2226 + MAC0122 (refazer)</td><td><span class="pill keep">manter</span></td><td>Ambas obrigatórias e com pré-req cumprido.</td></tr>
+  </table>
+</div>
+
+<!-- ===================== MAPA DA GRADE ===================== -->
+<h2>Grade completa — onde você está</h2>
+<div class="grid">
+
+  <div class="sem"><h3>1º semestre</h3>
+    <div class="card c-done"><div class="code">MAT2453</div><div class="name">Cálculo I</div><div class="meta">✓ aproveitamento (6,3)</div></div>
+    <div class="card c-done"><div class="code">MAC0110</div><div class="name">Intro. à Computação</div><div class="meta">✓ concluída — a confirmar no histórico</div></div>
+    <div class="card c-next"><div class="code">MAE0121</div><div class="name">Intro. Prob. e Estatística I</div><div class="meta">→ recomendada 2026/2</div></div>
+    <div class="card c-next"><div class="code">MAP2110</div><div class="name">Intro. aos Modelos Lineares</div><div class="meta">→ recomendada 2026/2</div></div>
+  </div>
+
+  <div class="sem"><h3>2º semestre</h3>
+    <div class="card c-done"><div class="code">MAT2454</div><div class="name">Cálculo II</div><div class="meta">✓ aprovado (5,0)</div></div>
+    <div class="card c-now"><div class="code">MAT3211</div><div class="name">Álgebra Linear</div><div class="meta">cursando como MAT0122 (2026/1)</div></div>
+    <div class="card c-next"><div class="code">MAC0122</div><div class="name">Princípios de Desenv. de Algoritmos</div><div class="meta">refazer → recomendada 2026/2</div></div>
+    <div class="card c-redo"><div class="code">MAE0212</div><div class="name">Intro. Prob. e Estatística II</div><div class="meta">reprovada · precisa de MAE0121 antes</div></div>
+  </div>
+
+  <div class="sem"><h3>3º semestre</h3>
+    <div class="card c-now"><div class="code">MAP2216</div><div class="name">Análise Aplicada</div><div class="meta">cursando (2026/1)</div></div>
+    <div class="card c-now"><div class="code">MAT3120</div><div class="name">Cálculo III</div><div class="meta">cursando como MAT0216 (2026/1)</div></div>
+    <div class="card c-todo"><div class="code">MAP2210</div><div class="name">Aplicações de Álgebra Linear</div><div class="meta">pré-req: MAP2110 + MAT3211</div></div>
+    <div class="card c-todo"><div class="code">MAE0228</div><div class="name">Noções de Prob. e Proc. Estocásticos</div><div class="meta">pré-req: MAE0121</div></div>
+  </div>
+
+  <div class="sem"><h3>4º semestre</h3>
+    <div class="card c-next"><div class="code">MAP2226</div><div class="name">Intro. às EDOs</div><div class="meta">→ recomendada 2026/2 · pré-req MAP2216</div></div>
+    <div class="card c-todo"><div class="code">MAP2220</div><div class="name">Fund. de Análise Numérica</div><div class="meta">pré-req: MAP2210 + MAT2454</div></div>
+    <div class="card c-todo"><div class="code">MAC0315</div><div class="name">Otimização Linear</div><div class="meta">pré-req: MAT3211</div></div>
+    <div class="card c-todo"><div class="code">MAE0301</div><div class="name">Inferência Estatística Frequentista</div><div class="meta">pré-req: MAE0228+MAE0212+MAT3120+MAT3211</div></div>
+  </div>
+
+  <div class="sem"><h3>5º semestre</h3>
+    <div class="card c-todo"><div class="code">PTC3307</div><div class="name">Sinais e Sistemas</div><div class="meta">★ início do eixo de Controle</div></div>
+    <div class="card c-todo"><div class="code">MAC0427</div><div class="name">Otimização Não-Linear</div><div class="meta">pré-req: MAT3211</div></div>
+    <div class="card c-todo"><div class="code">MAE0302</div><div class="name">Inferência Bayesiana</div><div class="meta">pré-req: MAE0228+MAE0212</div></div>
+  </div>
+
+  <div class="sem"><h3>6º semestre</h3>
+    <div class="card c-todo"><div class="code">PTC3313</div><div class="name">Sistemas de Controle</div><div class="meta">★ eixo de Controle</div></div>
+    <div class="card c-todo"><div class="code">MAP2320</div><div class="name">Métodos Numéricos em EDO II</div><div class="meta">pré-req: MAP2220</div></div>
+  </div>
+
+  <div class="sem"><h3>7º semestre</h3>
+    <div class="card c-todo"><div class="code">PTC3419</div><div class="name">Controle Digital</div><div class="meta">★ eixo de Controle</div></div>
+    <div class="card c-todo"><div class="code">MAP2419</div><div class="name">Intro. ao Trabalho de Formatura</div><div class="meta">TCC (1+4)</div></div>
+  </div>
+
+  <div class="sem"><h3>8º semestre</h3>
+    <div class="card c-todo"><div class="code">PTC3417</div><div class="name">Controle Não-Linear</div><div class="meta">★ eixo de Controle</div></div>
+    <div class="card c-todo"><div class="code">MAP2429</div><div class="name">Trabalho de Formatura</div><div class="meta">TCC (1+8)</div></div>
+  </div>
+
+</div>
+
+<!-- ===================== EXTRAS / OBSERVAÇÕES ===================== -->
+<div class="panel">
+  <h2>Observações</h2>
+  <ul class="notes">
+    <li><b>Vetores e Geometria (MAT0112 / Geometria Analítica)</b> — aproveitada, mas não é obrigatória do BMAC; deve entrar como <b>optativa livre</b>.</li>
+    <li><b>Cálculo IV (MAT0220)</b> — se cursar, conta como <b>optativa livre</b>, não como obrigatória.</li>
+    <li><b>Física Experimental I</b> — aprovada (8,3), mas <b>não faz parte</b> da grade do BMAC.</li>
+    <li><b>★ Eixo de Controle (PTC)</b> — a identidade da habilitação; só começa no 5º semestre. Tudo que você cursa agora é a base que o sustenta.</li>
+    <li><b>Os códigos diferem</b> (você usa MAT0122/MAT0216; a grade nova usa MAT3211/MAT3120) — são equivalências resolvidas no aproveitamento de estudos após a transferência.</li>
+  </ul>
+</div>
+
+<div class="panel">
+  <h2>Resumo do progresso</h2>
+  <ul class="notes">
+    <li><b>Concluídas que contam no BMAC:</b> Cálculo I, Cálculo II (+ MAC0110 a confirmar) — base do 1º/2º sem.</li>
+    <li><b>Cursando (2026/1):</b> Análise Aplicada, Cálculo III, Álgebra Linear — se passar, ~5 de ~25 obrigatórias.</li>
+    <li><b>A refazer:</b> MAC0122 e MAE0212 (ambas reprovadas, ambas obrigatórias).</li>
+    <li><b>Meta de nota:</b> 8 ou mais nas disciplinas de matemática, para mostrar recuperação à banca (a seleção do BMAC é análise de histórico, corte em nota ≥ 5,0, sem prova).</li>
+  </ul>
+</div>
+
+<div class="foot">
+  Fontes: Grade Curricular Júpiter (45070/504) · Histórico Escolar Júpiter · Edital de Transferência Interna IME-USP.<br>
+  Gerado em jun/2026. Confirme sempre pré-requisitos e disponibilidade de vagas no Júpiter antes da matrícula.
+</div>
+
+</body>
+</html>
